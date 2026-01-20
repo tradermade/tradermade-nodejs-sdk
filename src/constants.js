@@ -1,4 +1,3 @@
-//Base url https://marketdata.tradermade.com/api/v1
 export const DEFAULT_BASE_URL = "https://marketdata.tradermade.com/api/v1";
 
 export const TIME_SERIES_FORMAT = ["records","csv","index","columns","split"];

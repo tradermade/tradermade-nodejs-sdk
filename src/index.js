@@ -1,11 +1,11 @@
-import { Client } from "./src/client.js";
+import { Client } from "./client.js";
 import {
   TIME_SERIES_FORMAT,
   TIME_SERIES_INTERVAL,
   TIME_SERIES_PERIOD,
   DATA_EXPORTS_PANDAS_DF_FIELDS,
   DATA_EXPORTS_PANDAS_DF_FORMAT,
-} from "./src/constants.js";
+} from "./constants.js";
 
 class TraderMade {
   constructor() {
@@ -32,12 +32,13 @@ class TraderMade {
   }
 
   //Get Live Exchange Rates​
-  async getLiveExchangeRates(currency) {
+  async getLiveRates(currency) {  //remove exchange
     if (!currency) {
       throw new Error("currency is required.");
     }
+    console.log(currency)
     const data = await this.client.get("/live", {
-      currency,
+      currency
     });
     return data;
   }
@@ -49,7 +50,7 @@ class TraderMade {
   }
 
   //Get List of Streaming Instruments​
-  async getStreamCurrencyList() {
+  async getStreamingCurrencyList() {
     const data = await this.client.get("/streaming_currencies_list");
     return data;
   }
@@ -73,45 +74,45 @@ class TraderMade {
   }
 
   //Get Historical Exchange Rates​
-  async getHistoricalExchangeRates(date, currency) {
-    if (!date || !currency) {
-      throw new Error("date_time,currency are required.");
+  async getHistoricalRates(date, symbol) {  
+    if (!date || !symbol) {
+      throw new Error("date_time,symbol are required.");
     }
 
     const data = await this.client.get("/historical", {
-      currency,
+      currency:symbol,
       date,
     });
     return data;
   }
 
   //Get Hourly Historical Data​
-  async getHourlyHistoricalData(date_time, currency) {
-    if (!date_time || !currency) {
-      throw new Error("date_time,currency are required.");
+  async getHourlyHistoricalData(date_time, symbol) {
+    if (!date_time || !symbol) {
+      throw new Error("date_time,symbol are required.");
     }
 
     const data = await this.client.get("/hour_historical", {
       date_time,
-      currency,
+      currency:symbol,
     });
     return data;
   }
 
   //Get Minute Historical Data​
-  async getMinuteHistoricalData(date_time, currency) {
-    if (!date_time || !currency) {
-      throw new Error("date_time,currency are required.");
+  async getMinuteHistoricalData(date_time, symbol) {
+    if (!date_time || !symbol) {
+      throw new Error("date_time,symbol are required.");
     }
     const data = await this.client.get("/minute_historical", {
       date_time,
-      currency,
+      currency:symbol,
     });
     return data;
   }
 
   //Get Historical Tick Data​
-  async getHistoricalTickData(symbol, startDate, endDate, format) {
+  async getTickHistoricalData(symbol, startDate, endDate, format) {
     if (!symbol || !startDate || !endDate) {
       throw new Error("symbol, startDate and endDate are required.");
     }
@@ -124,7 +125,8 @@ class TraderMade {
     return data;
   }
 
-  async getHistoricalTickDataSample(symbol, startDate, endDate, format) {
+    //Get Historical Tick Sample Data​
+  async getTickHistoricalDataSample(symbol, startDate, endDate, format) {
     if (!symbol || !startDate || !endDate || !format) {
       throw new Error("Symbol,startDateTime and endDateTime are required.");
     }
@@ -188,17 +190,17 @@ class TraderMade {
   }
 
   //Convert Currency Amount
-  async getConvertCurrencyAmount(from, to, amount) {
+  async getCurrencyConversion(from, to, amount) {
     const data = await this.client.get("/convert", {
       from,
       to,
-      amount,
+      amount
     });
     return data;
   }
 
   //Get Data as Pandas DataFrame
-  async getDataAsPandasDataFrame(currency, startDate, endDate, format, fields) {
+  async getDataAsPandasDataFrame(symbol, startDate, endDate, format, fields) {
     if (!DATA_EXPORTS_PANDAS_DF_FORMAT.includes(format)) {
       throw new Error(
         `Invalid format.Please use one of : ${DATA_EXPORTS_PANDAS_DF_FORMAT}`
@@ -210,7 +212,7 @@ class TraderMade {
       );
     }
     const data = await this.client.get("/pandasDF", {
-      currency,
+      currency:symbol,
       start_date: startDate,
       end_date: endDate,
       format,

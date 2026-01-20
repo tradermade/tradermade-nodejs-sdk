@@ -1,11 +1,15 @@
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetCfdList() {
+async function cfdList() {
   const data = await tm.getCfdList();
   console.log(data);
 }
 
-example_GetCfdList().catch(console.error);
+cfdList().catch(console.error);

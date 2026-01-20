@@ -1,11 +1,15 @@
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetLiveCurrencyList() {
+async function liveCurrencyList() {
   const data = await tm.getLiveCurrencyList();
   console.log(data);
 }
 
-example_GetLiveCurrencyList().catch(console.error);
+liveCurrencyList().catch(console.error);

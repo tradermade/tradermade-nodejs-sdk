@@ -1,17 +1,21 @@
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-node-sdk";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetDataAsPandasDataFrame() {
+async function dataAsPandasDataFrame() {
   const data = await tm.getDataAsPandasDataFrame(
     "EURUSD",
     "2025-04-01",
     "2025-05-09",
     "index",
-    "close"
+    "close",
   );
   console.log(data);
 }
 
-example_GetDataAsPandasDataFrame().catch(console.error);
+dataAsPandasDataFrame().catch(console.error);

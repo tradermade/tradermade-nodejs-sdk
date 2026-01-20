@@ -1,8 +1,3 @@
-Here is the updated README. I have added the **Live Exchange Rates** example as the first item in the "Usage Examples" section, as it is the most common use case.
-
-I also formatted the arguments in that example to be a single comma-separated string (e.g., `"GBPUSD,UK100,USDJPY"`), which ensures it works correctly with the SDK you defined.
-
-```markdown
 # TraderMade Node.js SDK
 
 Official Node.js client library for the TraderMade Data API.
@@ -15,7 +10,7 @@ Create a `src` folder for your project and install the package inside it.
 mkdir src
 cd src
 npm init -y
-npm install tradermade-sdk
+npm install tradermade-nodejs-sdk
 
 ```
 
@@ -49,7 +44,7 @@ node index.js
 First, import the library and initialize the client.
 
 ```javascript
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
@@ -64,23 +59,23 @@ tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
 After creating the client, making calls to the TraderMade API is easy. Below are examples for fetching different types of market data.
 
-### 1. Get Live Exchange Rates
+### 1. Get Live Rates
 
 Fetch real-time data for multiple currencies or instruments at once.
 
 ```javascript
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetLiveExchangeRates() {
+async function liveRates() {
   // Pass multiple currencies as a comma-separated string
-  const data = await tm.getLiveExchangeRates("GBPUSD,UK100,USDJPY");
+  const data = await tm.getLiveRates("GBPUSD,UK100,USDJPY");
   console.log(data);
 }
 
-example_GetLiveExchangeRates().catch(console.error);
+liveRates().catch(console.error);
 
 ```
 
@@ -94,9 +89,9 @@ import TraderMade from 'tradermade-sdk';
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetConvertCurrencyAmount(){
+async function currencyConversion(){
     try {
-        const data = await tm.getConvertCurrencyAmount(
+        const data = await tm.getCurrencyConversion(
             "EUR",   // From Currency
             "GBP",   // To Currency
             "1000"   // Amount
@@ -108,7 +103,7 @@ async function example_GetConvertCurrencyAmount(){
     }
 };
 
-example_GetConvertCurrencyAmount().catch(console.error)
+currencyConversion().catch(console.error)
 
 ```
 
@@ -122,9 +117,9 @@ import TraderMade from "tradermade-sdk";
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetHistoricalTickData() {
+async function tickHistoricalData() {
   try {
-    const data = await tm.getHistoricalTickData(
+    const data = await tm.getTickHistoricalData(
       "GBPUSD",
       "2026-01-12 15:00",
       "2026-01-12 15:30"
@@ -135,7 +130,7 @@ async function example_GetHistoricalTickData() {
   }
 }
 
-example_GetHistoricalTickData();
+tickHistoricalData();
 
 ```
 
@@ -144,12 +139,12 @@ example_GetHistoricalTickData();
 Fetch daily time series data for analysis.
 
 ```javascript
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetTimeSeriesData() {
+async function timeSeriesData() {
   try {
     const data = await tm.getTimeSeriesData(
       "EURUSD",
@@ -165,6 +160,6 @@ async function example_GetTimeSeriesData() {
   }
 }
 
-example_GetTimeSeriesData();
+timeSeriesData();
 
 ```

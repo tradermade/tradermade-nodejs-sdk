@@ -1,11 +1,10 @@
 {
-  "name": "testingsdktm",
+  "name": "tradermade-nodejs-sdk",
   "version": "0.5.0",
   "description": "Official TRADERMADE Node.js SDK",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node tests/test.js"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "",
@@ -29,7 +28,6 @@
   "type": "module",
   "homepage": "",
   "dependencies": {
-    "axios": "^1.13.2",
-    "dotenv": "^17.2.3"
+    "axios": "^1.13.2"
   }
 }

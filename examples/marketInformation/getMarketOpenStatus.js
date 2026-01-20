@@ -1,11 +1,15 @@
-import TraderMade from "tradermade-sdk";
+import TraderMade from "tradermade-nodejs-sdk";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 const tm = new TraderMade();
 tm.setRestApiKey(process.env.TRADERMADE_API_KEY);
 
-async function example_GetOpenMarketStatus() {
+async function openMarketStatus() {
   const data = await tm.getOpenMarketStatus();
   console.log(data);
 }
 
-example_GetOpenMarketStatus().catch(console.error);
+openMarketStatus().catch(console.error);
