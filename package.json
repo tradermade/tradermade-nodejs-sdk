@@ -1,6 +1,6 @@
 {
   "name": "tradermade-nodejs-sdk",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Official TRADERMADE Node.js SDK",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": ""
   },
   "keywords": [
-    "tardermade.com",
+    "tradermade",
     "forex api",
     "crypto api",
     "api",
@@ -28,6 +28,8 @@
   "type": "module",
   "homepage": "",
   "dependencies": {
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "tradermade-nodejs-sdk": "^0.5.0"
   }
 }
