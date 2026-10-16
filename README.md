@@ -79,6 +79,15 @@ liveRates().catch(console.error);
 
 ```
 
+Optional argument: `getLiveRates(currency, perQuoteTs)`.
+Set `perQuoteTs` to `true` to send `per_quote_ts=true` and request a Unix timestamp in each quote.
+Omitted options are not sent,
+so existing calls keep their behavior.
+
+```javascript
+const data = await tm.getLiveRates("EURUSD,GBPUSD", true);
+```
+
 ### 2. Convert Currency
 
 Convert a specific amount from one currency to another using live exchange rates.
@@ -162,4 +171,13 @@ async function timeSeriesData() {
 
 timeSeriesData();
 
+```
+
+The optional seventh argument, `weekend`, accepts `true` or `false` for crypto
+pairs. Set it to `true` to include weekend data:
+
+```javascript
+const data = await tm.getTimeSeriesData(
+  "BTCUSD", "2026-10-09", "2026-10-12", "daily", "1", "records", true
+);
 ```
