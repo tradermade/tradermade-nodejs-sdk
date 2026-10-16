@@ -32,7 +32,7 @@ class TraderMade {
   }
 
   //Get Live Exchange Rates​
-  async getLiveRates(currency, per_quote_ts, volume) {  //remove exchange
+  async getLiveRates(currency, per_quote_ts) {  //remove exchange
     if (!currency) {
       throw new Error("currency is required.");
     }
@@ -40,7 +40,6 @@ class TraderMade {
     const data = await this.client.get("/live", {
       currency,
       per_quote_ts,
-      volume,
     });
     return data;
   }

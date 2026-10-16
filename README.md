@@ -79,14 +79,13 @@ liveRates().catch(console.error);
 
 ```
 
-Optional arguments: `getLiveRates(currency, per_quote_ts, volume)`.
+Optional argument: `getLiveRates(currency, per_quote_ts)`.
 Set `per_quote_ts` to `true` to request a Unix timestamp in each quote.
-The optional `volume` value is forwarded to the API; its behavior is not yet
-documented in the public REST API documentation. Omitted options are not sent,
+Omitted options are not sent,
 so existing calls keep their behavior.
 
 ```javascript
-const data = await tm.getLiveRates("EURUSD,GBPUSD", true, true);
+const data = await tm.getLiveRates("EURUSD,GBPUSD", true);
 ```
 
 ### 2. Convert Currency
