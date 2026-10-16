@@ -32,13 +32,15 @@ class TraderMade {
   }
 
   //Get Live Exchange Rates​
-  async getLiveRates(currency) {  //remove exchange
+  async getLiveRates(currency, per_quote_ts, volume) {  //remove exchange
     if (!currency) {
       throw new Error("currency is required.");
     }
     console.log(currency)
     const data = await this.client.get("/live", {
-      currency
+      currency,
+      per_quote_ts,
+      volume,
     });
     return data;
   }
@@ -146,7 +148,8 @@ class TraderMade {
     endDate,
     interval,
     period,
-    format
+    format,
+    weekend
   ) {
     if (!TIME_SERIES_FORMAT.includes(format)) {
       throw new Error(
@@ -173,6 +176,7 @@ class TraderMade {
       interval,
       period: periodNum,
       format,
+      weekend,
     });
     return data;
   }
